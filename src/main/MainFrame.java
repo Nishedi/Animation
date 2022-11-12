@@ -1,5 +1,7 @@
 package main;
 
+import view.Controler;
+
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
@@ -12,13 +14,14 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private MyPanel mp;
+	private Controler controler;
 
 	public static void main(String[] args) {
 
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				MainFrame thisClass = new MainFrame();
-				thisClass.setTitle("Manipulator");
+				thisClass.setTitle("Fly Wheel");
 				thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				thisClass.setVisible(true);
 				thisClass.animate();
@@ -52,6 +55,9 @@ public class MainFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		mp = new MyPanel();
+		controler = new Controler();
+
 		contentPane.add(mp, BorderLayout.CENTER);
+		contentPane.add(controler, BorderLayout.AFTER_LAST_LINE);
 	}
 }
