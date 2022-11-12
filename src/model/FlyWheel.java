@@ -2,13 +2,12 @@ package model;
 
 public class FlyWheel {
 
-    int p0x = 300;
-    int p0y = 300;
-    int psx = 300+300;
-    int psy = 300-100;
-    double alpha = 0;
-    int l1=100;
-    int l2=500;
+    public int p0x = 300;
+    public int p0y = 300;
+    public int psx = 300+300;
+    public int psy = 300-100;
+    public int l1=100;
+    public int l2=500;
 
     public FlyWheel(int p0x, int p0y, int psx, int psy, int l1, int l2) {
         this.p0x = p0x;
@@ -20,7 +19,7 @@ public class FlyWheel {
 
     }
     public Double computeBeta(Double alpha){
-        double beta = 0;
+        double beta;
         int d = psx - p0x;
         int h = psy - p0y;
         double x1 = l1 * Math.cos(alpha);

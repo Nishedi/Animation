@@ -7,28 +7,23 @@ import javax.swing.JPanel;
 
 import model.FlyWheel;
 import model.GObject;
-import model.Manipulator;
+import view.FlyWheelView;
 
 public class MyPanel extends JPanel {
 
 	public GObject g;
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * This is the default constructor
-	 */
 	public MyPanel() {
 		this.setSize(2300, 2300);
 		this.setLayout(new GridBagLayout());
-		FlyWheel flyWheel = new FlyWheel(300,300, 500,200,100,500);
-		g = new Manipulator(flyWheel);
-		// g = new Wheel();
+		FlyWheel flyWheel = new FlyWheel(300,300, 500,100,100,500);
+		g = new FlyWheelView(flyWheel);
 	}
 
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
-
 		if (g != null) {
 			g.drawMe(arg0);
 		}
