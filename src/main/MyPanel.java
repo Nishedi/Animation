@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
+import model.FlyWheel;
 import model.GObject;
 import model.Manipulator;
 
@@ -19,7 +20,8 @@ public class MyPanel extends JPanel {
 	public MyPanel() {
 		this.setSize(2300, 2300);
 		this.setLayout(new GridBagLayout());
-		g = new Manipulator();
+		FlyWheel flyWheel = new FlyWheel(300,300, 500,200,100,500);
+		g = new Manipulator(flyWheel);
 		// g = new Wheel();
 	}
 

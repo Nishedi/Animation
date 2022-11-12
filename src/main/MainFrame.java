@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 	public void animate() {
 		Thread t = new Thread(new Runnable() {
 			public void run() {
-				int i = 0;
+				int i = 3600;
 				while (i>0) {
 					mp.g.rotate();
 					mp.repaint();

@@ -6,13 +6,16 @@ import java.awt.geom.AffineTransform;
 public class Manipulator extends GObject {
 
 	public double alpha, beta=Math.PI/8;
+	int l1=100, l2;
+	FlyWheel flyWheel;
+
+	public Manipulator(FlyWheel flyWheel) {
+		this.flyWheel=flyWheel;
+	}
 
 	@Override
 	public void drawMe(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-
-		// trudno stwierdzi�, jaki jest rozmiar obszaru rysowania
-		// clip dzia�a, je�li okienko nie jest przesuni�te poza ekran
 		int dx0 = g2d.getClipBounds().width / 2;
 		int dy0 = g2d.getClipBounds().height / 2;
 		System.out.println(dx0);
@@ -20,40 +23,43 @@ public class Manipulator extends GObject {
 
 		t = new AffineTransform();
 
-		t.translate(dx0, dy0);
+		t.translate(flyWheel.p0x, flyWheel.p0y);
 		t.scale(1, -1);
 		
 		t.rotate(alpha);
 		g2d.setTransform(t);
-		g2d.drawLine(0, 0, 100, 0);
-		drawBlackCircle(100,0,g2d);
+		g2d.drawLine(0, 0, flyWheel.l1, 0);
+		drawBlackCircle(flyWheel.l1, 0,g2d);
 		
-		t.translate(100, 0);
-		t.rotate(beta);
+		t.translate(flyWheel.l1, 0);
 
-		int p0x = dx0;
-		int p0y = dy0;
 
-		int psx = dx0+300;
-		int psy = dy0-100;
 
-		int d = psx - p0x;
-		int h = psy - p0y;
+		//int p0x = dx0;
+		//int p0y = dy0;
 
+		//int psx = dx0+300;
+		//int psy = dy0-100;
+
+		//int d = psx - p0x;
+		//int h = psy - p0y;
+
+
+		//double x1 = l1 * Math.cos(alpha);
+		//double y1 = l1 * Math.sin(alpha);
+
+		//double d1 = d - x1;
+		//double h1 = h - y1;
+
+		//double gamma = Math.atan2(h1,d1);
+		beta = flyWheel.computeBeta(alpha);
+		t.rotate(-beta);
 		g2d.setTransform(t);
-		g2d.drawLine(0, 0, 500, 0);
-		drawBlackCircle(500,0,g2d);
-		int a = 300;
-		int b = 100;
-
-
-
+		g2d.drawLine(0, 0, flyWheel.l2, 0);
+		drawBlackCircle(flyWheel.l2,0,g2d);
 		g2d.setTransform(saveAT);
-		drawTrianglewithCircle(dx0,dy0,g2d);
-		drawTrianglewithCircle(dx0+300,dy0-100,g2d);
-
-
-
+		drawTrianglewithCircle(flyWheel.p0x, flyWheel.p0y, g2d);
+		drawTrianglewithCircle(flyWheel.psx, flyWheel.psx, g2d);
 	}
 
 	private void drawTrianglewithCircle(int a, int b, Graphics2D g2d){
