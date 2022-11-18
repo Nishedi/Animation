@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -13,12 +14,21 @@ public class MyPanel extends JPanel {
 
 	public GObject g;
 	private static final long serialVersionUID = 1L;
+	public FlyWheel flyWheel = null;
+	public FlyWheelView flyWheelView = null;
+	public ArrayList<Double> axlelist = new ArrayList<>();
 
-	public MyPanel() {
+	public MyPanel(FlyWheel flyWheel, FlyWheelView flyWheelView) {
+		this.flyWheel=flyWheel;
 		this.setSize(2300, 2300);
 		this.setLayout(new GridBagLayout());
-		FlyWheel flyWheel = new FlyWheel(300,300, 500,100,100,500);
-		g = new FlyWheelView(flyWheel);
+		g = flyWheelView;
+		this.flyWheelView=flyWheelView;
+	}
+
+	public void addAxle(double axle){
+		axlelist.add(axle);
+		if(axlelist.size()>1920) axlelist.remove(0);
 	}
 
 	@Override

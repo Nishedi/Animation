@@ -19,11 +19,11 @@ public class FlyWheelView extends GObject {
 	@Override
 	public void drawMe(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		int dx0 = g2d.getClipBounds().width / 2;
-		int dy0 = g2d.getClipBounds().height / 2;
+		int p0x = g2d.getClipBounds().width / 2;
+		int p0y = g2d.getClipBounds().height / 2;
 		AffineTransform saveAT = g2d.getTransform();
 		t = new AffineTransform();
-		t.translate(flyWheel.p0x, flyWheel.p0y);
+		t.translate(p0x, p0y);
 		t.scale(1, -1);
 		t.rotate(alpha);
 		g2d.setTransform(t);
@@ -36,8 +36,8 @@ public class FlyWheelView extends GObject {
 		g2d.drawLine(0, 0, flyWheel.l2, 0);
 		drawBlackCircle(flyWheel.l2,0,g2d);
 		g2d.setTransform(saveAT);
-		drawTrianglewithCircle(flyWheel.p0x, flyWheel.p0y, g2d);
-		drawTrianglewithCircle(flyWheel.psx, 5*flyWheel.psy, g2d);
+		drawTrianglewithCircle(p0x, p0y, g2d);
+		drawTrianglewithCircle(p0x + flyWheel.d, p0y - flyWheel.h, g2d);
 	}
 
 	private void drawTrianglewithCircle(int a, int b, Graphics2D g2d){
