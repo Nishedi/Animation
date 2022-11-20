@@ -3,7 +3,6 @@ package main;
 import controller.AppController;
 import model.FlyWheel;
 import model.History;
-import view.EditParameters;
 import view.FlyWheelView;
 import view.SpeedFrame;
 
@@ -16,10 +15,9 @@ public class Simulator {
         History history = new History();
         MainFrame mainFrame = new MainFrame(flyWheel, flyWheelView, history);
         SpeedFrame speedFrame = new SpeedFrame(flyWheel, history);
-        EditParameters editParameters = new EditParameters(flyWheel);
         mainFrame.setTitle("Fly Wheel");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        AppController appController=new AppController(flyWheel, editParameters, mainFrame, speedFrame, history);
+        AppController appController=new AppController(flyWheel, mainFrame, speedFrame, history);
         mainFrame.setVisible(true);
     }
 }
